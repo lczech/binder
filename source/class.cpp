@@ -80,6 +80,14 @@ string class_name(CXXRecordDecl const *C)
 // generate string represetiong class name that could be used in python
 string python_class_name(CXXRecordDecl const *C)
 {
+	// Check if there was a renaming requested for this class.
+	auto config = Config::get();
+	string const qualified_name = class_qualified_name(C);
+	string const renamed = config.get_renaming_for_class(qualified_name);
+	if( ! renamed.empty() ) {
+		return renamed;
+	}
+
 	string name = class_name(C);
 	return mangle_type_name(name);
 }
