@@ -55,6 +55,9 @@ Config file options
 The config file is a text file containing either a comment-line (starts with ``#``) or a directive line started with either ``+`` or ``-`` signs followed by a directive's name and optional parameters. Some directives will accept only the ``+`` while others can be used with
 both prefixes.
 
+Many directives take a function name or a class name as part of their specification. These are matched via a simple string comparison in Binder to how LLVM resolves them. Thus, the names need to be exact matches. For functions, in the most simple case, these are just the the function name itself (`abc::my_foo`), or fully specified with parameters and template parameters, to address specific overloads (`abc::my_foo<int>(int)`). Similar for classes. It might help to run Binder once to identify the names produced by LLVM, and then use those in the config directives.
+
+
 Selective bindings
 ------------------
 
@@ -273,6 +276,32 @@ In verbose mode, Binder prints functions that use any of those default return va
   +return_value_policy aaa::foo(const std::string &) pybind11::return_value_policy::copy
   +return_value_policy aaa::A::bar                   pybind11::return_value_policy::reference
   +return_value_policy aaa::A::baz(int, int)         pybind11::return_value_policy::reference_internal
+
+
+Renaming
+--------
+
+In some cases, the automatically generated names for classes and functions in Python are mangled up with namespace and template parameter names (due to how LLVM resolves them). This can make them cumbersome or confusing to use, as the names do not correspond neatly to their C++ equivalents. Binder hence offers to rename classes and functions to clean them up. We advise to use this functionality carefully, to not confuse users.
+
+* ``+rename_function`` takes the old and new function name, separated by a space or tab. The old name can be just the function name itself (`my_foo`), or fully specified with parameters and template parameters, to address specific overloads (`my_foo<int>(int)`). The new name should just be the desired name itself.
+
+* ``+rename_class`` takes the cold and new class name, separated by a space or tab. The old name typically has to be the fully specified name, including all namespaces and template paramters. The new name should just be the desired class name itself.
+
+Examples:
+
+.. code-block:: bash
+
+  +rename_function my_first_cpp_func my_first_python_func
+  +rename_function my_other_cpp_func(int) my_other_python_func
+
+  +rename_class MyCppStruct MyPythonStruct
+  +rename_function MySecondStruct::my_cpp_func my_python_func
+
+  +rename_function tagged_function<int>() tagged_function_int
+  +rename_function tagged_function<std::string>() tagged_function_str
+
+  +rename_class foo::bar::TaggedClass<foo::bar::Tag> TaggedClass_Tag
+  +rename_function foo::bar::TaggedClass<foo::bar::Tag>::another_cpp_func another_python_func
 
 
 Miscellaneous

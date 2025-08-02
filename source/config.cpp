@@ -108,6 +108,9 @@ void Config::read(string const &file_name)
 
 	string const _prefix_for_static_member_functions_{"prefix_for_static_member_functions"};
 
+	string const _rename_class_{"rename_class"};
+	string const _rename_function_{"rename_function"};
+
 	std::ifstream f(file_name);
 
 	if( not f.good() ) { throw std::runtime_error("can not open file " + file_name + " for reading..."); }
@@ -309,6 +312,25 @@ void Config::read(string const &file_name)
 		else if( token == _prefix_for_static_member_functions_ ) {
 			if( bind ) { prefix_for_static_member_functions_ = name_without_spaces; }
 			else throw std::runtime_error("prefix_for_static_member_functions must be '+' configuration.");
+		}
+
+		else if( token == _rename_class_ ) {
+			if( bind ) {
+				auto binder_function = split_in_two(name, "Invalid line for rename_class specification! Must be: name_of_class + <space or tab> + name_of_rename_class. Got: " + line);
+				rename_classes_[binder_function.first] = binder_function.second;
+			}
+			else {
+				throw std::runtime_error("rename_class must be '+' configuration.");
+			}
+		}
+		else if( token == _rename_function_ ) {
+			if( bind ) {
+				auto binder_function = split_in_two(name, "Invalid line for rename_function specification! Must be: name_of_function + <space or tab> + name_of_rename_function. Got: " + line);
+				rename_functions_[binder_function.first] = binder_function.second;
+			}
+			else {
+				throw std::runtime_error("rename_function must be '+' configuration.");
+			}
 		}
 
 		else if( token == _trampoline_member_function_binder_ ) {
@@ -570,5 +592,24 @@ string Config::includes_code() const
 	if( s.tellp() != std::streampos(0) ) s << '\n';
 	return s.str();
 }
+
+
+string Config::get_renaming_for_class(string const &name) const
+{
+	string const clean_name = trim(name);
+	auto new_name_it = rename_classes_.find(clean_name);
+	if( new_name_it == rename_classes_.end() ) return "";
+	return new_name_it->second;
+}
+
+
+string Config::get_renaming_for_function(string const &name) const
+{
+	string const clean_name = trim(name);
+	auto new_name_it = rename_functions_.find(clean_name);
+	if( new_name_it == rename_functions_.end() ) return "";
+	return new_name_it->second;
+}
+
 
 } // namespace binder

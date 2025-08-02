@@ -67,6 +67,7 @@ private:
 	string pybind11_include_file_ = "pybind11/pybind11.h";
 	string prefix_for_static_member_functions_ = "";
 
+	std::map<string, string> rename_classes_, rename_functions_;
 	std::vector<string> enums_to_bind, enums_to_skip;
 
 public:
@@ -143,6 +144,9 @@ public:
 	string is_custom_trampoline_function_requested(string const &function__) const;
 
 	string includes_code() const;
+
+	string get_renaming_for_class(string const &name) const;
+	string get_renaming_for_function(string const &name) const;
 
 	bool is_field_skipping_requested(string const &name) const;
 };

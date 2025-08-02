@@ -239,7 +239,21 @@ string python_function_name(FunctionDecl const *F)
 		// << "::" << F->getNameAsString() << "\n";
 		// }
 
+		// Check if a renaming for this function was requested.
+		auto config = Config::get();
+		string const qualified_name = standard_name(F->getQualifiedNameAsString());
+		string const specified_name = function_qualified_name(F, true);
+		string renamed = config.get_renaming_for_function(specified_name);
+		if( ! renamed.empty() ) {
+			return renamed;
+		}
+		renamed = config.get_renaming_for_function(qualified_name);
+		if( ! renamed.empty() ) {
+			return renamed;
+		}
+
 		// there is no point of generating different names for different template function since in most cases we can treat them as overload's
+		// (unless they do not take any template parameters as arguments; but this can be solved by the above renaming if needed - it's probably a rare special case in practice)
 		// return mangle_type_name( F->getNameAsString() + template_specialization(F) );
 		return F->getNameAsString();
 	}
