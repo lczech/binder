@@ -437,4 +437,4 @@ PYBIND11_MODULE(T42_stl_names, root_module) {
 // T42_stl_names.cpp
 
 // Modules list file: TEST/T42_stl_names.modules
-// std 
+// std

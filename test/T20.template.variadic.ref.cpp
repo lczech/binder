@@ -171,4 +171,4 @@ PYBIND11_MODULE(T20_template_variadic, root_module) {
 // T20_template_variadic.cpp
 
 // Modules list file: TEST/T20_template_variadic.modules
-// std variadic_template 
+// std variadic_template

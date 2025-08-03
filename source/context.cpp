@@ -458,8 +458,10 @@ void Context::generate(Config const &config)
 	std::set<string> namespaces = create_all_nested_namespaces();
 	for( auto &n : namespaces ) {
 		if( n.size() ) namespace_pairs += "\t\t{{\"{}\", \"{}\"}},\n"_format(base_namespace(n), last_namespace(n));
+		if( !modules.empty() ) {
+			modules += ' ';
+		}
 		modules += n;
-		modules += ' ';
 	}
 	replace(modules, "::", ".");
 
@@ -491,7 +493,7 @@ void Context::generate(Config const &config)
 		for( auto &s : sources ) f << s << "\n";
 
 		std::ofstream namespaces_file_handle(root_module_prefix + ".modules");
-		namespaces_file_handle << modules;
+		namespaces_file_handle << modules << "\n";
 	}
 }
 

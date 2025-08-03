@@ -332,4 +332,4 @@ PYBIND11_MODULE(T42_stl_names_multimap, root_module) {
 // T42_stl_names_multimap.cpp
 
 // Modules list file: TEST/T42_stl_names_multimap.modules
-// std 
+// std

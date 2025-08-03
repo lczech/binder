@@ -125,4 +125,4 @@ PYBIND11_MODULE(T50_namespace_binder, root_module) {
 // T50_namespace_binder_2.cpp
 
 // Modules list file: TEST/T50_namespace_binder.modules
-// aaaa aaaa.bbbb 
+// aaaa aaaa.bbbb

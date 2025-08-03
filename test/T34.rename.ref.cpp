@@ -183,4 +183,4 @@ PYBIND11_MODULE(T34_rename, root_module) {
 // T34_rename_1.cpp
 
 // Modules list file: TEST/T34_rename.modules
-// foo foo.bar 
+// foo foo.bar

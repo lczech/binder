@@ -112,4 +112,4 @@ PYBIND11_MODULE(T71_module_local, root_module) {
 // T71_module_local_1.cpp
 
 // Modules list file: TEST/T71_module_local.modules
-// aaa bbb 
+// aaa bbb

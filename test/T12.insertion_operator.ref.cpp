@@ -234,4 +234,4 @@ PYBIND11_MODULE(T12_insertion_operator, root_module) {
 // T12_insertion_operator_4.cpp
 
 // Modules list file: TEST/T12_insertion_operator.modules
-// aaaa bbbb bbbb.cccc 
+// aaaa bbbb bbbb.cccc

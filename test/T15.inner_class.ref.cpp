@@ -248,4 +248,4 @@ PYBIND11_MODULE(T15_inner_class, root_module) {
 // T15_inner_class_3.cpp
 
 // Modules list file: TEST/T15_inner_class.modules
-// n1 n1.n2 
+// n1 n1.n2
