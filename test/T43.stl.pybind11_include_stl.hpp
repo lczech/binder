@@ -23,12 +23,12 @@ void test_include_stl(
 	std::vector<int>,
 	std::deque<int>,
 	std::list<int>,
-	std::array<int,5>,
+	std::array<int, 5>,
 	std::valarray<int>,
 	std::set<int>,
 	std::unordered_set<int>,
-	std::map<int,int>,
-	std::unordered_map<int,int>
+	std::map<int, int>,
+	std::unordered_map<int, int>
 #if ((defined(_MSVC_LANG) && _MSVC_LANG >= 201703L) || __cplusplus >= 201703L)
     // C++17
 	,

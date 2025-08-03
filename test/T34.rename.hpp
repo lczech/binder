@@ -59,7 +59,7 @@ struct MyOtherCppStruct
 };
 
 // -------------------------------------------------------------------------------------------------
-//   Function Templates
+//   Template Selection
 // -------------------------------------------------------------------------------------------------
 
 // Instantiations of function templates by default are working fine,
@@ -92,7 +92,7 @@ template int         tagged_cpp_function<int>();
 template std::string tagged_cpp_function<std::string>();
 
 // -------------------------------------------------------------------------------------------------
-//   Types
+//   Template Parameters
 // -------------------------------------------------------------------------------------------------
 
 // LLVM resolves types to some "default" type which is not always wanted,
@@ -114,8 +114,26 @@ template class NumericalClass<uint16_t>;
 template class NumericalClass<uint32_t>;
 template class NumericalClass<uint64_t>;
 
+// Furthermore, in previous versions of Binder, template argument lists
+// in class names were resolved with no space after the comma, which made
+// their usage in config directives inconsistent with other lists.
+// Here, we hence test how this behaves now with respect to the config.
+template<typename A, typename B, typename C>
+class ComplicatedClass
+{};
+
+template class ComplicatedClass<int, int, int>;
+
+// Same with functions.
+
+template<typename A, typename B, typename C>
+void complicated_func(A, B, C)
+{}
+
+template void complicated_func<int, int, int>(int, int, int);
+
 // -------------------------------------------------------------------------------------------------
-//   Namespaces
+//   Namespace Resolution
 // -------------------------------------------------------------------------------------------------
 
 // This is where the renaming for classes might be most relevant,

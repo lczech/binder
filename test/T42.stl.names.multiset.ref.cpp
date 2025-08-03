@@ -17,17 +17,17 @@
 void bind_std_stl_function(std::function< pybind11::module &(std::string const &namespace_) > &M)
 {
 	{ // std::binary_function file:bits/stl_function.h line:
-		pybind11::class_<std::binary_function<float,float,bool>, std::shared_ptr<std::binary_function<float,float,bool>>> cl(M("std"), "binary_function_float_float_bool_t", "");
-		cl.def( pybind11::init( [](std::binary_function<float,float,bool> const &o){ return new std::binary_function<float,float,bool>(o); } ) );
-		cl.def( pybind11::init( [](){ return new std::binary_function<float,float,bool>(); } ) );
-		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float,float,bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
+		pybind11::class_<std::binary_function<float, float, bool>, std::shared_ptr<std::binary_function<float, float, bool>>> cl(M("std"), "binary_function_float_float_bool_t", "");
+		cl.def( pybind11::init( [](std::binary_function<float, float, bool> const &o){ return new std::binary_function<float, float, bool>(o); } ) );
+		cl.def( pybind11::init( [](){ return new std::binary_function<float, float, bool>(); } ) );
+		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float, float, bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
 	}
 	{ // std::equal_to file:bits/stl_function.h line:
-		pybind11::class_<std::equal_to<float>, std::shared_ptr<std::equal_to<float>>, std::binary_function<float,float,bool>> cl(M("std"), "equal_to_float_t", "");
+		pybind11::class_<std::equal_to<float>, std::shared_ptr<std::equal_to<float>>, std::binary_function<float, float, bool>> cl(M("std"), "equal_to_float_t", "");
 		cl.def( pybind11::init( [](){ return new std::equal_to<float>(); } ) );
 		cl.def( pybind11::init( [](std::equal_to<float> const &o){ return new std::equal_to<float>(o); } ) );
 		cl.def("__call__", (bool (std::equal_to<float>::*)(const float &, const float &) const) &std::equal_to<float>::operator(), "C++: std::equal_to<float>::operator()(const float &, const float &) const --> bool", pybind11::arg("__x"), pybind11::arg("__y"));
-		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float,float,bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
+		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float, float, bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
 	}
 }
 

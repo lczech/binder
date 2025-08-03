@@ -20,7 +20,7 @@
 void bind_std_stl_vector(std::function< pybind11::module &(std::string const &namespace_) > &M)
 {
 	// std::vector file:bits/stl_vector.h line:
-	binder::vector_binder<int,std::allocator<int>>(M("std"), "int", "std_allocator_int_t");
+	binder::vector_binder<int, std::allocator<int>>(M("std"), "int", "std_allocator_int_t");
 
 }
 
@@ -75,7 +75,7 @@ void bind_T40_stl(std::function< pybind11::module &(std::string const &namespace
 void bind_std_T40_stl(std::function< pybind11::module &(std::string const &namespace_) > &M)
 {
 	// std::vector file:T40.stl.hpp line:
-	binder::vector_binder<float,std::allocator<float>>(M("std"), "float", "std_allocator_float_t");
+	binder::vector_binder<float, std::allocator<float>>(M("std"), "float", "std_allocator_float_t");
 
 }
 

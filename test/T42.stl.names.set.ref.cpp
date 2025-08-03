@@ -18,17 +18,17 @@
 void bind_std_stl_function(std::function< pybind11::module &(std::string const &namespace_) > &M)
 {
 	{ // std::binary_function file:bits/stl_function.h line:
-		pybind11::class_<std::binary_function<float,float,bool>, std::shared_ptr<std::binary_function<float,float,bool>>> cl(M("std"), "binary_function_float_float_bool_t", "");
-		cl.def( pybind11::init( [](std::binary_function<float,float,bool> const &o){ return new std::binary_function<float,float,bool>(o); } ) );
-		cl.def( pybind11::init( [](){ return new std::binary_function<float,float,bool>(); } ) );
-		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float,float,bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
+		pybind11::class_<std::binary_function<float, float, bool>, std::shared_ptr<std::binary_function<float, float, bool>>> cl(M("std"), "binary_function_float_float_bool_t", "");
+		cl.def( pybind11::init( [](std::binary_function<float, float, bool> const &o){ return new std::binary_function<float, float, bool>(o); } ) );
+		cl.def( pybind11::init( [](){ return new std::binary_function<float, float, bool>(); } ) );
+		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float, float, bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
 	}
 	{ // std::equal_to file:bits/stl_function.h line:
-		pybind11::class_<std::equal_to<float>, std::shared_ptr<std::equal_to<float>>, std::binary_function<float,float,bool>> cl(M("std"), "equal_to_float_t", "");
+		pybind11::class_<std::equal_to<float>, std::shared_ptr<std::equal_to<float>>, std::binary_function<float, float, bool>> cl(M("std"), "equal_to_float_t", "");
 		cl.def( pybind11::init( [](){ return new std::equal_to<float>(); } ) );
 		cl.def( pybind11::init( [](std::equal_to<float> const &o){ return new std::equal_to<float>(o); } ) );
 		cl.def("__call__", (bool (std::equal_to<float>::*)(const float &, const float &) const) &std::equal_to<float>::operator(), "C++: std::equal_to<float>::operator()(const float &, const float &) const --> bool", pybind11::arg("__x"), pybind11::arg("__y"));
-		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float,float,bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
+		cl.def("assign", (struct std::binary_function<float, float, bool> & (std::binary_function<float, float, bool>::*)(const struct std::binary_function<float, float, bool> &)) &std::binary_function<float, float, bool>::operator=, "C++: std::binary_function<float, float, bool>::operator=(const struct std::binary_function<float, float, bool> &) --> struct std::binary_function<float, float, bool> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
 	}
 	{ // std::hash file:bits/functional_hash.h line:
 		pybind11::class_<std::hash<float>, std::shared_ptr<std::hash<float>>> cl(M("std"), "hash_float_t", "");
@@ -116,14 +116,14 @@ void bind_std_stl_set(std::function< pybind11::module &(std::string const &names
 		cl.def("clear", (void (std::set<std::list<std::forward_list<std::deque<std::vector<double> > > >>::*)()) &std::set<std::list<std::forward_list<std::deque<std::vector<double>>>>>::clear, "C++: std::set<std::list<std::forward_list<std::deque<std::vector<double>>>>>::clear() --> void");
 	}
 	{ // std::unordered_set file:bits/unordered_set.h line:
-		pybind11::class_<std::unordered_set<float>, std::shared_ptr<std::unordered_set<float>>> cl(M("std"), "unordered_set_float_t", "");
-		cl.def( pybind11::init( [](){ return new std::unordered_set<float>(); } ) );
-		cl.def( pybind11::init( [](unsigned long const & a0){ return new std::unordered_set<float>(a0); } ), "doc" , pybind11::arg("__n"));
-		cl.def( pybind11::init( [](unsigned long const & a0, const struct std::hash<float> & a1){ return new std::unordered_set<float>(a0, a1); } ), "doc" , pybind11::arg("__n"), pybind11::arg("__hf"));
-		cl.def( pybind11::init( [](unsigned long const & a0, const struct std::hash<float> & a1, const struct std::equal_to<float> & a2){ return new std::unordered_set<float>(a0, a1, a2); } ), "doc" , pybind11::arg("__n"), pybind11::arg("__hf"), pybind11::arg("__eql"));
+		pybind11::class_<std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>, std::shared_ptr<std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>>> cl(M("std"), "unordered_set_float_std_hash_float_std_equal_to_float_std_allocator_float_t", "");
+		cl.def( pybind11::init( [](){ return new std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>(); } ) );
+		cl.def( pybind11::init( [](unsigned long const & a0){ return new std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>(a0); } ), "doc" , pybind11::arg("__n"));
+		cl.def( pybind11::init( [](unsigned long const & a0, const struct std::hash<float> & a1){ return new std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>(a0, a1); } ), "doc" , pybind11::arg("__n"), pybind11::arg("__hf"));
+		cl.def( pybind11::init( [](unsigned long const & a0, const struct std::hash<float> & a1, const struct std::equal_to<float> & a2){ return new std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>(a0, a1, a2); } ), "doc" , pybind11::arg("__n"), pybind11::arg("__hf"), pybind11::arg("__eql"));
 		cl.def( pybind11::init<unsigned long, const struct std::hash<float> &, const struct std::equal_to<float> &, const class std::allocator<float> &>(), pybind11::arg("__n"), pybind11::arg("__hf"), pybind11::arg("__eql"), pybind11::arg("__a") );
 
-		cl.def( pybind11::init( [](std::unordered_set<float> const &o){ return new std::unordered_set<float>(o); } ) );
+		cl.def( pybind11::init( [](std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>> const &o){ return new std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>(o); } ) );
 		cl.def( pybind11::init<const class std::allocator<float> &>(), pybind11::arg("__a") );
 
 		cl.def( pybind11::init<const class std::unordered_set<float> &, const class std::allocator<float> &>(), pybind11::arg("__uset"), pybind11::arg("__a") );
@@ -132,28 +132,28 @@ void bind_std_stl_set(std::function< pybind11::module &(std::string const &names
 
 		cl.def( pybind11::init<unsigned long, const struct std::hash<float> &, const class std::allocator<float> &>(), pybind11::arg("__n"), pybind11::arg("__hf"), pybind11::arg("__a") );
 
-		cl.def("assign", (class std::unordered_set<float> & (std::unordered_set<float>::*)(const class std::unordered_set<float> &)) &std::unordered_set<float>::operator=, "C++: std::unordered_set<float>::operator=(const class std::unordered_set<float> &) --> class std::unordered_set<float> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
-		cl.def("get_allocator", (class std::allocator<float> (std::unordered_set<float>::*)() const) &std::unordered_set<float>::get_allocator, "C++: std::unordered_set<float>::get_allocator() const --> class std::allocator<float>");
-		cl.def("empty", (bool (std::unordered_set<float>::*)() const) &std::unordered_set<float>::empty, "C++: std::unordered_set<float>::empty() const --> bool");
-		cl.def("size", (unsigned long (std::unordered_set<float>::*)() const) &std::unordered_set<float>::size, "C++: std::unordered_set<float>::size() const --> unsigned long");
-		cl.def("max_size", (unsigned long (std::unordered_set<float>::*)() const) &std::unordered_set<float>::max_size, "C++: std::unordered_set<float>::max_size() const --> unsigned long");
-		cl.def("insert", (struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, bool> (std::unordered_set<float>::*)(const float &)) &std::unordered_set<float>::insert, "C++: std::unordered_set<float>::insert(const float &) --> struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, bool>", pybind11::arg("__x"));
-		cl.def("erase", (unsigned long (std::unordered_set<float>::*)(const float &)) &std::unordered_set<float>::erase, "C++: std::unordered_set<float>::erase(const float &) --> unsigned long", pybind11::arg("__x"));
-		cl.def("clear", (void (std::unordered_set<float>::*)()) &std::unordered_set<float>::clear, "C++: std::unordered_set<float>::clear() --> void");
-		cl.def("swap", (void (std::unordered_set<float>::*)(class std::unordered_set<float> &)) &std::unordered_set<float>::swap, "C++: std::unordered_set<float>::swap(class std::unordered_set<float> &) --> void", pybind11::arg("__x"));
-		cl.def("hash_function", (struct std::hash<float> (std::unordered_set<float>::*)() const) &std::unordered_set<float>::hash_function, "C++: std::unordered_set<float>::hash_function() const --> struct std::hash<float>");
-		cl.def("key_eq", (struct std::equal_to<float> (std::unordered_set<float>::*)() const) &std::unordered_set<float>::key_eq, "C++: std::unordered_set<float>::key_eq() const --> struct std::equal_to<float>");
-		cl.def("count", (unsigned long (std::unordered_set<float>::*)(const float &) const) &std::unordered_set<float>::count, "C++: std::unordered_set<float>::count(const float &) const --> unsigned long", pybind11::arg("__x"));
-		cl.def("equal_range", (struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, struct std::__detail::_Node_iterator<float, true, false> > (std::unordered_set<float>::*)(const float &)) &std::unordered_set<float>::equal_range, "C++: std::unordered_set<float>::equal_range(const float &) --> struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, struct std::__detail::_Node_iterator<float, true, false> >", pybind11::arg("__x"));
-		cl.def("bucket_count", (unsigned long (std::unordered_set<float>::*)() const) &std::unordered_set<float>::bucket_count, "C++: std::unordered_set<float>::bucket_count() const --> unsigned long");
-		cl.def("max_bucket_count", (unsigned long (std::unordered_set<float>::*)() const) &std::unordered_set<float>::max_bucket_count, "C++: std::unordered_set<float>::max_bucket_count() const --> unsigned long");
-		cl.def("bucket_size", (unsigned long (std::unordered_set<float>::*)(unsigned long) const) &std::unordered_set<float>::bucket_size, "C++: std::unordered_set<float>::bucket_size(unsigned long) const --> unsigned long", pybind11::arg("__n"));
-		cl.def("bucket", (unsigned long (std::unordered_set<float>::*)(const float &) const) &std::unordered_set<float>::bucket, "C++: std::unordered_set<float>::bucket(const float &) const --> unsigned long", pybind11::arg("__key"));
-		cl.def("load_factor", (float (std::unordered_set<float>::*)() const) &std::unordered_set<float>::load_factor, "C++: std::unordered_set<float>::load_factor() const --> float");
-		cl.def("max_load_factor", (float (std::unordered_set<float>::*)() const) &std::unordered_set<float>::max_load_factor, "C++: std::unordered_set<float>::max_load_factor() const --> float");
-		cl.def("max_load_factor", (void (std::unordered_set<float>::*)(float)) &std::unordered_set<float>::max_load_factor, "C++: std::unordered_set<float>::max_load_factor(float) --> void", pybind11::arg("__z"));
-		cl.def("rehash", (void (std::unordered_set<float>::*)(unsigned long)) &std::unordered_set<float>::rehash, "C++: std::unordered_set<float>::rehash(unsigned long) --> void", pybind11::arg("__n"));
-		cl.def("reserve", (void (std::unordered_set<float>::*)(unsigned long)) &std::unordered_set<float>::reserve, "C++: std::unordered_set<float>::reserve(unsigned long) --> void", pybind11::arg("__n"));
+		cl.def("assign", (class std::unordered_set<float> & (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(const class std::unordered_set<float> &)) &std::unordered_set<float>::operator=, "C++: std::unordered_set<float>::operator=(const class std::unordered_set<float> &) --> class std::unordered_set<float> &", pybind11::return_value_policy::automatic, pybind11::arg(""));
+		cl.def("get_allocator", (class std::allocator<float> (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::get_allocator, "C++: std::unordered_set<float>::get_allocator() const --> class std::allocator<float>");
+		cl.def("empty", (bool (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::empty, "C++: std::unordered_set<float>::empty() const --> bool");
+		cl.def("size", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::size, "C++: std::unordered_set<float>::size() const --> unsigned long");
+		cl.def("max_size", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::max_size, "C++: std::unordered_set<float>::max_size() const --> unsigned long");
+		cl.def("insert", (struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, bool> (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(const float &)) &std::unordered_set<float>::insert, "C++: std::unordered_set<float>::insert(const float &) --> struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, bool>", pybind11::arg("__x"));
+		cl.def("erase", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(const float &)) &std::unordered_set<float>::erase, "C++: std::unordered_set<float>::erase(const float &) --> unsigned long", pybind11::arg("__x"));
+		cl.def("clear", (void (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)()) &std::unordered_set<float>::clear, "C++: std::unordered_set<float>::clear() --> void");
+		cl.def("swap", (void (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(class std::unordered_set<float> &)) &std::unordered_set<float>::swap, "C++: std::unordered_set<float>::swap(class std::unordered_set<float> &) --> void", pybind11::arg("__x"));
+		cl.def("hash_function", (struct std::hash<float> (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::hash_function, "C++: std::unordered_set<float>::hash_function() const --> struct std::hash<float>");
+		cl.def("key_eq", (struct std::equal_to<float> (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::key_eq, "C++: std::unordered_set<float>::key_eq() const --> struct std::equal_to<float>");
+		cl.def("count", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(const float &) const) &std::unordered_set<float>::count, "C++: std::unordered_set<float>::count(const float &) const --> unsigned long", pybind11::arg("__x"));
+		cl.def("equal_range", (struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, struct std::__detail::_Node_iterator<float, true, false> > (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(const float &)) &std::unordered_set<float>::equal_range, "C++: std::unordered_set<float>::equal_range(const float &) --> struct std::pair<struct std::__detail::_Node_iterator<float, true, false>, struct std::__detail::_Node_iterator<float, true, false> >", pybind11::arg("__x"));
+		cl.def("bucket_count", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::bucket_count, "C++: std::unordered_set<float>::bucket_count() const --> unsigned long");
+		cl.def("max_bucket_count", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::max_bucket_count, "C++: std::unordered_set<float>::max_bucket_count() const --> unsigned long");
+		cl.def("bucket_size", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(unsigned long) const) &std::unordered_set<float>::bucket_size, "C++: std::unordered_set<float>::bucket_size(unsigned long) const --> unsigned long", pybind11::arg("__n"));
+		cl.def("bucket", (unsigned long (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(const float &) const) &std::unordered_set<float>::bucket, "C++: std::unordered_set<float>::bucket(const float &) const --> unsigned long", pybind11::arg("__key"));
+		cl.def("load_factor", (float (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::load_factor, "C++: std::unordered_set<float>::load_factor() const --> float");
+		cl.def("max_load_factor", (float (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)() const) &std::unordered_set<float>::max_load_factor, "C++: std::unordered_set<float>::max_load_factor() const --> float");
+		cl.def("max_load_factor", (void (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(float)) &std::unordered_set<float>::max_load_factor, "C++: std::unordered_set<float>::max_load_factor(float) --> void", pybind11::arg("__z"));
+		cl.def("rehash", (void (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(unsigned long)) &std::unordered_set<float>::rehash, "C++: std::unordered_set<float>::rehash(unsigned long) --> void", pybind11::arg("__n"));
+		cl.def("reserve", (void (std::unordered_set<float, std::hash<float>, std::equal_to<float>, std::allocator<float>>::*)(unsigned long)) &std::unordered_set<float>::reserve, "C++: std::unordered_set<float>::reserve(unsigned long) --> void", pybind11::arg("__n"));
 	}
 }
 

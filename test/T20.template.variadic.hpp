@@ -17,12 +17,12 @@
 
 namespace variadic_template
 {
-	template<class T,int N,int... Ns> struct Array : std::array<Array<T,Ns...>,N> {};
+	template<class T, int N, int... Ns> struct Array : std::array<Array<T, Ns...>, N> {};
 
-	template<class T,int N> struct Array<T,N> : std::array<T,N> {};
+	template<class T, int N> struct Array<T, N> : std::array<T, N> {};
 
 	// Needed to instanciate the class instance and bind it
-	struct st2: public Array<int, 2,2> {};
+	struct st2: public Array<int, 2, 2> {};
 }
 
 

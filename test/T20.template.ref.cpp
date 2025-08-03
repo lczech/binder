@@ -46,10 +46,10 @@ void bind_T20_template(std::function< pybind11::module &(std::string const &name
 	M("").def("add", (int (*)(int)) &add<int>, "C++: add(int) --> int", pybind11::arg("v"));
 
 	// add(int, int, int) file:T20.template.hpp line:
-	M("").def("add", (int (*)(int, int, int)) &add<int,int, int>, "C++: add(int, int, int) --> int", pybind11::arg("first"), pybind11::arg("as"), pybind11::arg("as"));
+	M("").def("add", (int (*)(int, int, int)) &add<int, int, int>, "C++: add(int, int, int) --> int", pybind11::arg("first"), pybind11::arg("as"), pybind11::arg("as"));
 
 	// add(int, int) file:T20.template.hpp line:
-	M("").def("add", (int (*)(int, int)) &add<int,int>, "C++: add(int, int) --> int", pybind11::arg("first"), pybind11::arg("as"));
+	M("").def("add", (int (*)(int, int)) &add<int, int>, "C++: add(int, int) --> int", pybind11::arg("first"), pybind11::arg("as"));
 
 	// foo() file:T20.template.hpp line:
 	M("").def("foo", (void (*)()) &foo, "C++: foo() --> void");

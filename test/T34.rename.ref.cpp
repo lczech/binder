@@ -1,8 +1,10 @@
 // File: T34_rename.cpp
+#include <T34.rename.hpp> // ComplicatedClass
 #include <T34.rename.hpp> // MyCppStruct
 #include <T34.rename.hpp> // MyOtherCppStruct
 #include <T34.rename.hpp> // MySecondStruct
 #include <T34.rename.hpp> // NumericalClass
+#include <T34.rename.hpp> // complicated_func
 #include <T34.rename.hpp> // my_other_cpp_func
 #include <T34.rename.hpp> // my_weird_cpp_func
 #include <T34.rename.hpp> // tagged_cpp_function
@@ -84,6 +86,13 @@ void bind_T34_rename(std::function< pybind11::module &(std::string const &namesp
 		pybind11::class_<NumericalClass<unsigned long>, std::shared_ptr<NumericalClass<unsigned long>>> cl(M(""), "NumericalClass_uint64_t", "");
 		cl.def( pybind11::init( [](){ return new NumericalClass<unsigned long>(); } ) );
 	}
+	{ // ComplicatedClass file:T34.rename.hpp line:
+		pybind11::class_<ComplicatedClass<int, int, int>, std::shared_ptr<ComplicatedClass<int, int, int>>> cl(M(""), "LessComplicatedClass_int_t", "");
+		cl.def( pybind11::init( [](){ return new ComplicatedClass<int, int, int>(); } ) );
+	}
+	// complicated_func(int, int, int) file:T34.rename.hpp line:
+	M("").def("less_complicated_func_int_t", (void (*)(int, int, int)) &complicated_func<int, int, int>, "C++: complicated_func(int, int, int) --> void", pybind11::arg(""), pybind11::arg(""), pybind11::arg(""));
+
 }
 
 

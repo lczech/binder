@@ -209,15 +209,18 @@ string template_specialization(FunctionDecl const *F)
 
 				string arg = template_argument_to_string(ta->get(i));
 				if( ta->get(i).getKind() == TemplateArgument::ArgKind::Pack and arg.size() > 2 ) arg = arg.substr(1, arg.size() - 2); // removing extra <> around template parameter pack
-				templ += arg + ",";
+				if( templ.size() > 1 ) {
+					templ += ", ";
+				}
+				templ += arg;
 
 				// outs() << arg << " kind: " << ta->get(i).getKind()  << "\n";
 
 				// if( t->getTemplateArgs()[i].ArgKind() == TemplateArgument::ArgKind::Integral ) outs() << " template arg:" << t->getTemplateArgs()[i].<< "\n";
 				// outs() << expresion_to_string( t->getTemplateArgs()[i].getAsExpr() ) << "\n";
 			}
-			templ.back() = '>';
-			if( templ.size() == 1 ) templ.resize(0); // case for `<>`
+			templ += '>';
+			if( templ.size() == 2 ) templ.resize(0); // case for `<>`
 
 			fix_boolean_types(templ);
 		}
